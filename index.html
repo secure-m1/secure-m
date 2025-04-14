@@ -133,7 +133,7 @@ div {
 </head>
 <body>
 
-    <img src="C:/Users/user/Desktop/logo5.webp" alt="Image from desktop"  />
+<img src="https://raw.githubusercontent.com/hessa75/securem/main/images-removebg-preview.png" alt="Logo" style="width: 300px; height: 300px; border-radius: 50%; background-color: transparent;">
 	
 	
     
@@ -359,10 +359,10 @@ function closePopup() {
 
         // التحقق من صحة النطاق
         if (domain && validDomains.some(validDomain => domain.endsWith(validDomain))) {
-            message.textContent = 'البريد الإلكتروني صحيح ويتبع جهة حكومية.';
+            message.textContent = '"The email is valid and belongs to a governmental entity.';
             message.className = 'message valid';
         } else {
-            message.textContent = 'البريد الإلكتروني غير تابع لجهة حكومية.';
+            message.textContent = '"The email is not associated with a governmental entity."';
             message.className = 'message invalid';
         }
     }
