@@ -349,7 +349,7 @@ function closePopup() {
     // تعريف النطاقات المسموح بها
     const validDomains = ['gov.sa', 'edu.sa', 'org.sa']; // نطاقات متعددة
 
-    // وظيفة التحقق من البريد الإلكتروني
+    // دالة التحقق من البريد الإلكتروني
     function validateEmail() {
         const email = document.getElementById('email').value;
         const message = document.getElementById('message');
@@ -367,30 +367,30 @@ function closePopup() {
         }
     }
 
-    // الوظائف الإضافية للقائمة المنبثقة
+    // دالة فتح القائمة المنبثقة
     function openPopup() {
         document.getElementById('popup').style.display = 'block';
     }
 
+    // دالة إغلاق القائمة المنبثقة
     function closePopup() {
         document.getElementById('popup').style.display = 'none';
     }
 </script>
 
+<div class="domain-extensions">
+    <h3>Popular Domain Extensions and Their Meanings:</h3>
+    <ul>
+        <li>.com: Widely used for commercial purposes.</li>
+        <li>.net: Often used for internet services and networks.</li>
+        <li>.org: Typically used by non-profit organizations.</li>
+        <li>.gov: Reserved for government entities.</li>
+        <li>.edu: Used by educational institutions.</li>
+        <li>.info: Commonly used for informational websites.</li>
+        <li>.me: Often used for personal sites or individual branding.</li>
+    </ul>
+</div>
 
-    <div class="domain-extensions">
-        <h3>Popular Domain Extensions and Their Meanings:</h3>
-        <ul>
-            <li>.com: Widely used for commercial purposes.</li>
-            <li>.net: Often used for internet services and networks.</li>
-            <li>.org: Typically used by non-profit organizations.</li>
-            <li>.gov: Reserved for government entities.</li>
-            <li>.edu: Used by educational institutions.</li>
-            <li>.info: Commonly used for informational websites.</li>
-            <li>.me: Often used for personal sites or individual branding.</li>
-        </ul>
-    </div>
-	
 
 </body>
 </html>
