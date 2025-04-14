@@ -133,7 +133,7 @@ div {
 </head>
 <body>
 
-<img src="https://raw.githubusercontent.com/hessa75/securem/main/images-removebg-preview.png" alt="Logo" style="width: 300px; height: 300px; border-radius: 50%; background-color: transparent;">
+    <img src="C:/Users/user/Desktop/logo5.webp" alt="Image from desktop"  />
 	
 	
     
@@ -323,35 +323,28 @@ div {
             'mailto:ccc@iyelo.com',
             'mailto:help@tabby.ai',
         ];
-<script>
-    // تحديد النطاقات المسموح بها
-    const validDomains = ['gov.sa', 'edu.sa', 'org.sa']; 
 
-    function validateEmail() {
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message');
-        
-        // استخراج النطاق من البريد الإلكتروني
-        const domain = email.split('@')[1]; // الجزء بعد علامة @
-
-        // التحقق من صحة النطاق
-        if (domain && validDomains.some(validDomain => domain.endsWith(validDomain))) {
-            message.textContent = 'البريد الإلكتروني صحيح ويتبع جهة حكومية.';
-            message.className = 'message valid';
-        } else {
-            message.textContent = 'البريد الإلكتروني غير تابع لجهة حكومية.';
-            message.className = 'message invalid';
+        function validateEmail() {
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message');
+            
+            // Check if the email is in the valid list
+            if (validEmails.includes(email)) {
+                message.textContent = 'The e-mail is valid';
+                message.className = 'message valid';
+            } else {
+                message.textContent = 'The e-mail is invalid';
+                message.className = 'message invalid';
+            }
         }
-    }
+		function openPopup() {
+    document.getElementById('popup').style.display = 'block';
+}
 
-    function openPopup() {
-        document.getElementById('popup').style.display = 'block';
-    }
-
-    function closePopup() {
-        document.getElementById('popup').style.display = 'none';
-    }
-
+function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+}
+    </script>
 
     <div class="domain-extensions">
         <h3>Popular Domain Extensions and Their Meanings:</h3>
