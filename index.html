@@ -359,10 +359,10 @@ function closePopup() {
 
         // التحقق من صحة النطاق
         if (domain && validDomains.some(validDomain => domain.endsWith(validDomain))) {
-            message.textContent = '"The email is valid and belongs to a governmental entity.';
+            message.textContent = 'The email is valid and belongs to a governmental entity.';
             message.className = 'message valid';
         } else {
-            message.textContent = '"The email is not associated with a governmental entity."';
+            message.textContent = 'The email is not associated with a governmental entity.';
             message.className = 'message invalid';
         }
     }
