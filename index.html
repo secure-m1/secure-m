@@ -345,6 +345,38 @@ function closePopup() {
     document.getElementById('popup').style.display = 'none';
 }
     </script>
+<script>
+    // تعريف النطاقات المسموح بها
+    const validDomains = ['gov.sa', 'edu.sa', 'org.sa']; // نطاقات متعددة
+
+    // وظيفة التحقق من البريد الإلكتروني
+    function validateEmail() {
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message');
+        
+        // استخراج النطاق من البريد الإلكتروني
+        const domain = email.split('@')[1]; // الجزء بعد علامة @
+
+        // التحقق من صحة النطاق
+        if (domain && validDomains.some(validDomain => domain.endsWith(validDomain))) {
+            message.textContent = 'البريد الإلكتروني صحيح ويتبع جهة حكومية.';
+            message.className = 'message valid';
+        } else {
+            message.textContent = 'البريد الإلكتروني غير تابع لجهة حكومية.';
+            message.className = 'message invalid';
+        }
+    }
+
+    // الوظائف الإضافية للقائمة المنبثقة
+    function openPopup() {
+        document.getElementById('popup').style.display = 'block';
+    }
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+</script>
+
 
     <div class="domain-extensions">
         <h3>Popular Domain Extensions and Their Meanings:</h3>
