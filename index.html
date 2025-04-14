@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Secure M</title>
+    <style>
+        body {
+            background:  linear-gradient(180deg, #E0F7FA 0%, #B3E5FC 50%, #81D4FA 100%);
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .message {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .valid {
+            color: green;
+        }
+        .invalid {
+            color: red;
+        }
+        .divider {
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .divider::before, .divider::after {
+            flex: 1;
+            content: '';
+            padding: 2px;
+            background-color:  White; /*  الخطوط اللي بين الكلام */
+            margin: 5px;
+        }
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 18%;
+        }
+        .tips, .domain-extensions {
+            margin-top: 20px;
+        }
+        .domain-extensions {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #FFFFFF;  /* مربع الامتدادات */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .domain-extensions ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+        .domain-extensions li {
+            margin-bottom: 10px;
+        }
+        .domain-extensions h3 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        button {
+             display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #A3D9A5;  /* لون المستطيل لزر */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+		.popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background: white; /* لون المربع داخل القائمة المنبثقة */
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    z-index: 1000;
+    text-align: center;
+}
+.popup-content {
+    position: relative;
+}
+.close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+	
+}
+h3 {
+    color: green; /* تغيير لون الخط إلى اخضر العنوان حق المربع */
+}
+div {
+    color: skyblue;  /*  لون الخط لسماوي*/
+}
+
+    </style>
+</head>
+<body>
+
+    <img src="C:/Users/user/Desktop/logo5.webp" alt="Image from desktop"  />
+	
+	
+    
+    <div class="divider">VERIFY NOW!</div>
+    <div class="divider">OR,</div>
+    <div class="divider">cry later</div>
+	
+
+    <div class="container">
+        <div class="input-group">
+            <label for="email">Enter The e-mail:</label>
+            <input type="email" id="email" placeholder="example@example.com" required>
+        </div>
+        <button onclick="validateEmail()">Verify</button>
+        <div id="message" class="message"></div>
+    </div>
+<!-- زر لفتح القائمة المنبثقة -->
+<button onclick="openPopup()">Show Tips</button>
+
+<!-- القائمة المنبثقة -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <p class="tips">
+            Tips to prevent email scams: <span style='font-size:20px;'>&#128204;</span>
+        </p>
+        <hr />
+        <p><small>Keep software updated.</small></p>
+        <p><small>Report suspicious emails as spam.</small></p>
+        <p><small>Increase email security.</small></p>
+        <p><small>Avoid emails from unknown senders.</small></p>
+        <p><small>Never give out personal information.</small></p>
+        <p><small>Be wary of pop-ups.</small></p>
+        <p><small>Avoid donation scams.</small></p>
+        <p><small>Blocking pop-ups and ads.</small></p>
+        <p><small>Avoid sharing personal information.</small></p>
+        <p><small>Use strong passwords and MFA.</small></p>
+        <p><small>Don't click unknown links.</small></p>
+    </div>
+</div>
+    <script>
+        const validEmails = [
+            // Universities
+            'info@ksu.edu.sa',
+            'mailto:info@pnu.edu.sa',
+            'ithelp@psau.edu.sa',
+            'mailto:ub@ub.edu.sa',
+            'info@kfu.edu.sa',
+            'help@uj.edu.sa',
+            'info@tvtc.gov.sa',
+            'admissions@kaust.edu.sa',
+            'portal@kku.edu.sa',
+            'ub@ub.edu.sa',
+            'info@rsadf.gov.sa',
+            'callcenter@uqu.edu.sa',
+            'ut@ut.edu.sa',
+            'kkmarinfo@sang.gov.sa',
+            'Kfsc@kfsc.edu.sa',
+            'info@rsadf.gov.sa',
+            'AFCA_UNI@MODA.GOV.SA',
+            'pr@iau.edu.sa',
+            'itdev@su.edu.sa',
+            'webmaster@jazanu.edu.sa',
+            'ithelp@psau.edu.sa',
+            'contact@iu.edu.sa',
+            'admissions@kaust.edu.sa',
+            'Dar@taibahu.edu.sa',
+            'JU@ju.edu.sa',
+            'info@qu.edu.sa',
+            'dar_admin@ksau-hs.edu.sa',
+            'rad@imamu.edu.sa',
+            'info@uoh.edu.sa',
+            'opu@nbu.edu.sa',
+            'dite.admin@mu.edu.sa',
+            'websupport@tu.edu.sa',
+            'info@uhb.edu.sa',
+            'president@kfupm.edu.sa',
+            'info@nu.edu.sa',
+            'cic@kau.edu.sa',
+            // Government
+            'contact@mohe.gov.sa',
+            'info@mofa.gov.sa',
+            'ccc@mof.gov.sa',
+            'Support@seha.sa',
+            'info@hrsd.gov.sa',
+            'info@mcit.gov.sa',
+            'info@mewa.gov.sa',
+            'info@mep.gov.sa',
+            '1950@moj.gov.sa',
+            'info@moi.gov.sa',
+            'hostmaster@moda.gov.sa',
+            'info@RCU.gov.sa',
+            'info@jeddah.gov.sa',
+            'info@rcrc.gov.sa',
+            'portal@nic.gov.sa',
+            'info@srca.org.sa',
+            'info@gcam.gov.sa',
+            'eradah@eradah.med.sa',
+            'contact@dga.gov.sa',
+            'Contact@kfsh.med.sa',
+            'info@kkesh.med.sa',
+            'info@mawhiba.org.sa',
+            'media@kacst.edu.sa',
+            'info@gcam.gov.sa',
+            'info@mep.gov.sa',
+            'info@cst.gov.sa',
+            'info@rcrc.gov.sa',
+            'info@kfmc.med.sa',
+            'info@shargiah.gov.sa',
+            'media.inquiries@aramco.com',
+            'CS@mc.gov.sa',
+            'DMO@misa.gov.sa',
+            'mailto:webmaster@moenergy.gov.sa',
+            'Navy.Recruitment@rsnf.gov.sa',
+            'mailto:A.Addadi@rsaf.gov.sa',
+            'mailto:G1.Jobs@rslf.gov.sa',
+            'mailto:K.Almousa@rsadf.gov.sa',
+            'mailto:Afrad@moda.gov.sa',
+            'mailto:Info@psmmc.med.sa',
+            'mailto:info@maroof.sa',
+            'info@jeddah.gov.sa',
+            'bahacare@amanatalbaha.gov.sa',
+            'link@najran.gov.sa',
+            'info@alhasa.gov.sa',
+            'info@shargiah.gov.sa',
+            'admin@taifcity.gov.sa',
+            'marketing-info@ars.gov.sa',
+            'info@holymakkah.gov.sa',
+            'info@qassim.gov.sa',
+            'admin@amanahHail.gov.sa',
+            'info@sp.com.sa',
+            'info@rcrc.gov.sa',
+            'info@royalguard.gov.sa',
+            'FSF@fsf.gov.sa',
+            'info@rcmc.gov.sa',
+            'info@srca.org.sa',
+            'info@nsc.gov.sa',
+            'info@saudiexim.gov.sa',
+            '998@998.gov.sa',
+            'info@saudiexim.gov.sa',
+            'info@boe.gov.sa',
+            'info@msd.med.sa',
+            // business
+            'care@jarir.com',
+            'Invoice_Support@alrajhibank.com.sa',
+            'customercare@riyadbank.com',
+            'Customercare@bankalbilad.com',
+            'mailto:shakwa@bankaljazira.com',
+            'complaints@alinma.com',
+            'info@sp.com.sa',
+            'suggestions@ikea.com.sa',
+            'care@qasralawani.com',
+            'support@3safsa.com',
+            'SUPPORT@LAVERNEKSA.COM', 
+            'mailto:info@alromaizan.com',
+            'mailto:info@dr-cafe.com.sa',
+            'mailto:estore@addresscafe.sa',
+            'mailto:info@nadec.com.sa',
+            'mailto:care@noon.com',
+            'mailto:inquiries@mrsool.co',
+            'mailto:customercare@sephora.ae',
+            'mailto:help@hungerstation.com',
+            'mailto:info@jahez.net',
+            'mailto:support@thechefz.co',
+            'mailto:info@mrsool.co',
+            'mailto:support@faces.com',
+            'mailto:care@goldenscent.com',
+            'mailto:customercare@nahdi.sa',
+            'mailto:online@whites.net',
+            'mailto:info@al-dawaa.com',
+            'mailto:ePharmacy.Support@drsulaimanalhabib.com',
+            'mailto:ccc@alfransi.com.sa',
+            'mailto:Customer_Service@saib.com.sa',
+            'mailto:customercare@anb.com.sa',
+            'aljufcrm@aljfs.com',
+            'mailto:contact.ae@zara.com',
+            'mailto:csonline@abdulsamadalqurashi.com',
+            'mailto:wecare@arabianoud.com',
+            'mailto:hrdtraining@saco-ksa.com',
+            'mailto:customercare@alephksa.com',
+            'mailto:cs@ibrahimalqurashi.com',
+            'mailto:info@almajdouie.com',
+            'mailto:ecustomercare@alhussaintoys.sa',
+            'mailto:cs@toysrus.com.sa',
+            'mailto:starbucksrewards@alshaya.com',
+            'info@alesayi-motors.com',
+            'mailto:ccc@iyelo.com',
+            'mailto:help@tabby.ai',
+        ];
+
+        function validateEmail() {
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message');
+            
+            // Check if the email is in the valid list
+            if (validEmails.includes(email)) {
+                message.textContent = 'The e-mail is valid';
+                message.className = 'message valid';
+            } else {
+                message.textContent = 'The e-mail is invalid';
+                message.className = 'message invalid';
+            }
+        }
+		function openPopup() {
+    document.getElementById('popup').style.display = 'block';
+}
+
+function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+}
+    </script>
+
+    <div class="domain-extensions">
+        <h3>Popular Domain Extensions and Their Meanings:</h3>
+        <ul>
+            <li>.com: Widely used for commercial purposes.</li>
+            <li>.net: Often used for internet services and networks.</li>
+            <li>.org: Typically used by non-profit organizations.</li>
+            <li>.gov: Reserved for government entities.</li>
+            <li>.edu: Used by educational institutions.</li>
+            <li>.info: Commonly used for informational websites.</li>
+            <li>.me: Often used for personal sites or individual branding.</li>
+        </ul>
+    </div>
+	
+
+</body>
+</html>
+
