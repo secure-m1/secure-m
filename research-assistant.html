@@ -35,7 +35,7 @@
       font-size: 16px;
       margin-bottom: 20px;
     }
-    input[type="file"], button {
+    textarea, button {
       width: 100%;
       padding: 12px;
       margin-top: 15px;
@@ -43,6 +43,10 @@
       border: 1px solid #90caf9;
       font-size: 16px;
       box-sizing: border-box;
+    }
+    textarea {
+      height: 150px;
+      resize: vertical;
     }
     button {
       background-color: #2196f3;
@@ -64,29 +68,27 @@
   <img src="https://secure-m1.github.io/secure-m/images/paper-mind-logo.jpeg" alt="Paper Mind Logo" class="logo">
   <div class="container">
     <h2>Paper Mind - Research Assistant</h2>
-    <p>Upload a PDF or Word document to analyze its content and generate research ideas.</p>
-    <input type="file" id="fileInput" accept=".pdf,.doc,.docx">
-    <button onclick="handleUpload()">Upload File</button>
+    <p>Paste your abstract, research idea, or any scientific text below to get suggestions.</p>
+    <textarea id="textInput" placeholder="Enter your research text here..."></textarea>
+    <button onclick="handleAnalyze()">Analyze Text</button>
     <div id="output" class="output"></div>
   </div>
 
   <script>
-    function handleUpload() {
-      const file = document.getElementById("fileInput").files[0];
+    function handleAnalyze() {
+      const text = document.getElementById("textInput").value.trim();
       const output = document.getElementById("output");
 
-      if (!file) {
-        output.textContent = "Please select a file first.";
+      if (!text) {
+        output.textContent = "Please enter some text to analyze.";
         return;
       }
 
-      const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
       output.innerHTML = `
-        ✅ File uploaded successfully:<br>
-        - Name: ${file.name} <br>
-        - Size: ${fileSizeMB} MB <br>
-        - Type: ${file.type.includes("pdf") ? "PDF" : "Word"} <br>
-        - Page count: (Analysis coming soon)
+        ✅ Text received:<br>
+        - Length: ${text.length} characters<br>
+        - Preview: "${text.slice(0, 100)}..."<br>
+        - Suggestions: (Coming soon)
       `;
     }
   </script>
