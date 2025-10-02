@@ -2,93 +2,82 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>مساعد البحث العلمي بالذكاء الاصطناعي</title>
+  <title>Paper Mind - مساعد البحث العلمي</title>
   <style>
     body {
-      background: linear-gradient(180deg, #E0F7FA 0%, #B3E5FC 50%, #81D4FA 100%);
-      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #ffffff 0%, #e3f2fd 100%);
+      font-family: 'Segoe UI', sans-serif;
       padding: 20px;
       text-align: center;
+      direction: rtl;
     }
     .container {
-      max-width: 500px;
+      max-width: 600px;
       margin: auto;
-      background-color: #fff;
-      padding: 20px;
+      background-color: #ffffff;
+      padding: 25px;
       border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    input, button {
+    input[type="file"], button {
       width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 5px;
-      border: none;
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 6px;
+      border: 1px solid #90caf9;
       box-sizing: border-box;
+      font-size: 16px;
     }
     button {
-      background-color: #4CAF50;
+      background-color: #2196f3;
       color: white;
-      font-size: 16px;
+      border: none;
       cursor: pointer;
     }
     button:hover {
-      background-color: #45a049;
+      background-color: #1976d2;
     }
     .output {
       margin-top: 20px;
-      color: #00796B;
+      color: #0d47a1;
       font-weight: bold;
     }
-    .sources {
-      margin-top: 30px;
-      text-align: left;
-    }
-    .sources h3 {
-      color: green;
-    }
-    .sources ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    .sources li {
-      margin-bottom: 8px;
+    .logo {
+      width: 160px;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
-  <img src="https://raw.githubusercontent.com/hessa75/securem/main/images-removebg-preview.png" alt="Logo" style="width: 150px; border-radius: 50%;">
+  <img src="https://raw.githubusercontent.com/hessa75/securem/main/paper-mind-logo.jpeg" alt="Paper Mind Logo" class="logo">
   <div class="container">
-    <h2>مساعد البحث العلمي بالذكاء الاصطناعي</h2>
-    <input type="text" id="paperTitle" placeholder="أدخل عنوان الورقة البحثية">
-    <button onclick="summarize()">تلخيص الورقة</button>
+    <h2>مساعد البحث العلمي - Paper Mind</h2>
+    <p>ارفع ملف PDF أو Word لتحليل محتواه واقتراح أفكار بحثية</p>
+    <input type="file" id="fileInput" accept=".pdf,.doc,.docx">
+    <button onclick="handleUpload()">رفع الملف</button>
     <div id="output" class="output"></div>
-    <div class="sources">
-      <h3>مصادر البيانات المقترحة:</h3>
-      <ul>
-        <li>📘 arXiv Dataset</li>
-        <li>📗 Semantic Scholar Corpus</li>
-        <li>📙 Papers With Code</li>
-        <li>🔍 Google Dataset Search</li>
-        <li>📊 Kaggle Datasets</li>
-        <li>🤗 Hugging Face Datasets</li>
-      </ul>
-    </div>
   </div>
 
   <script>
-    function summarize() {
-      const title = document.getElementById("paperTitle").value;
+    function handleUpload() {
+      const file = document.getElementById("fileInput").files[0];
       const output = document.getElementById("output");
-      if (title.trim() === "") {
-        output.textContent = "يرجى إدخال عنوان الورقة أولاً.";
-      } else {
-        output.textContent = `📄 تم تلخيص الورقة: "${title}" ✅
-        - النتائج: النموذج يقترح تحسينات في فهم النصوص.
-        - الفجوات: نقص في التقييم متعدد اللغات.
-        - الاتجاهات المستقبلية: دمج نماذج توليدية مع تحليل دلالي.`;
+
+      if (!file) {
+        output.textContent = "يرجى اختيار ملف أولاً.";
+        return;
       }
+
+      const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+      output.innerHTML = `
+        ✅ تم رفع الملف: <br>
+        - الاسم: ${file.name} <br>
+        - الحجم: ${fileSizeMB} MB <br>
+        - النوع: ${file.type.includes("pdf") ? "PDF" : "Word"} <br>
+        - عدد الصفحات: (يتم التحليل لاحقًا)
+      `;
     }
   </script>
 </body>
 </html>
+
