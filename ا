@@ -1,1 +1,21 @@
 
+from flask import Flask, request, render_template, jsonify
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+@app.route("/analyze", methods=["POST"])
+def analyze():
+    data = request.json
+    text = data.get("text", "")
+    
+    # نموذج وهمي للتلخيص (تقدر تربطه بـ GPT-2 لاحقًا)
+    summary = f"Summary: {text[:100]}..." if text else "No input provided."
+    
+    return jsonify({"summary": summary})
+
+if __name__ == "__main__":
+    app.run(debug=True)
