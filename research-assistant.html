@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Paper Mind - مساعد البحث العلمي</title>
+  <title>Paper Mind - Research Assistant</title>
   <style>
     body {
-      background: linear-gradient(180deg, #ffffff 0%, #e3f2fd 100%);
+      background-color: #e3f2fd; /* Light blue background from logo */
       font-family: 'Segoe UI', sans-serif;
       padding: 20px;
       text-align: center;
-      direction: rtl;
+      direction: ltr;
     }
     .container {
       max-width: 600px;
@@ -43,18 +43,20 @@
       font-weight: bold;
     }
     .logo {
-      width: 160px;
-      margin-bottom: 20px;
+      width: 220px;
+      margin-bottom: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
   <img src="https://secure-m1.github.io/secure-m/images/paper-mind-logo.jpeg" alt="Paper Mind Logo" class="logo">
   <div class="container">
-    <h2>مساعد البحث العلمي - Paper Mind</h2>
-    <p>ارفع ملف PDF أو Word لتحليل محتواه واقتراح أفكار بحثية</p>
+    <h2>Paper Mind - Research Assistant</h2>
+    <p>Upload a PDF or Word document to analyze its content and generate research ideas.</p>
     <input type="file" id="fileInput" accept=".pdf,.doc,.docx">
-    <button onclick="handleUpload()">رفع الملف</button>
+    <button onclick="handleUpload()">Upload File</button>
     <div id="output" class="output"></div>
   </div>
 
@@ -64,17 +66,17 @@
       const output = document.getElementById("output");
 
       if (!file) {
-        output.textContent = "يرجى اختيار ملف أولاً.";
+        output.textContent = "Please select a file first.";
         return;
       }
 
       const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
       output.innerHTML = `
-        ✅ تم رفع الملف: <br>
-        - الاسم: ${file.name} <br>
-        - الحجم: ${fileSizeMB} MB <br>
-        - النوع: ${file.type.includes("pdf") ? "PDF" : "Word"} <br>
-        - عدد الصفحات: (يتم التحليل لاحقًا)
+        ✅ File uploaded successfully:<br>
+        - Name: ${file.name} <br>
+        - Size: ${fileSizeMB} MB <br>
+        - Type: ${file.type.includes("pdf") ? "PDF" : "Word"} <br>
+        - Page count: (Analysis coming soon)
       `;
     }
   </script>
